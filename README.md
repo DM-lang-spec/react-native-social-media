@@ -1,6 +1,6 @@
 # SocialMedia
 
-Expo SDK 55 + React Native (TypeScript) app with [Expo Router](https://docs.expo.dev/router/introduction/) for navigation. The dev server entry is `expo-router/entry` (see `package.json`).
+Expo SDK 55 + React Native (TypeScript) app with [Expo Router](https://docs.expo.dev/router/introduction/) for navigation. The dev server entry is `expo-router/entry` (see `package.json`). The root screen redirects into the `(auth)` group for the sign-up / verification flow.
 
 ## Requirements
 
@@ -29,10 +29,12 @@ npm install
 
 ## Project layout
 
-- `src/app/` — file-based routes (Expo Router); add `_layout.tsx` and screen files here
+- `src/app/` — file-based routes (Expo Router); root `_layout.tsx` and `index.tsx` live here
+- `src/app/(auth)/` — auth stack: `index`, `verify_email`, `verify_otp`, `set_password` (see `(auth)/_layout.tsx`)
 - `index.ts` — not used as the app entry while `package.json` `main` is `expo-router/entry`
 - `app.json` — Expo config (`name`, `slug`, `scheme`, icons, splash, `typedRoutes` experiment)
 - `assets/` — icons, splash, favicon
+- `.vscode/` — recommended extensions and workspace settings (optional)
 
 ## Code quality
 
