@@ -3,6 +3,10 @@
     "name": "SocialMedia",
     "slug": "SocialMedia",
     "version": "1.0.0",
+    "scheme": "social-media",
+    "experiments": {
+      "typedRoutes": true
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,7 +28,9 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"]
   }
 }
