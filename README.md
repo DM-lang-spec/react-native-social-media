@@ -29,8 +29,8 @@ npm install
 
 ## Project layout
 
-- `app/` — file-based routes (Expo Router); add `_layout.tsx` and screen files here
-- `App.tsx` / `index.ts` — classic Expo root (not used while `main` is `expo-router/entry`)
+- `src/app/` — file-based routes (Expo Router); add `_layout.tsx` and screen files here
+- `index.ts` — not used as the app entry while `package.json` `main` is `expo-router/entry`
 - `app.json` — Expo config (`name`, `slug`, `scheme`, icons, splash, `typedRoutes` experiment)
 - `assets/` — icons, splash, favicon
 
