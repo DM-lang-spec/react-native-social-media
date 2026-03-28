@@ -69,18 +69,18 @@ export default function Login() {
             Sign up
           </Link>
         </View>
-        {errorInfo && (
-          <TouchableOpacity
-            style={{ alignItems: 'center', marginTop: 8 }}
-            onPress={() =>
-              router.push(
-                '/verify_email?heading=Verify email to set new password',
-              )
-            }
-          >
-            <Text style={{ fontSize: 16 }}>Forgot Password</Text>
-          </TouchableOpacity>
-        )}
+        {/* {errorInfo && ( */}
+        <TouchableOpacity
+          style={{ alignItems: 'center', marginTop: 8 }}
+          onPress={() =>
+            router.push(
+              '/verify_email?heading=Verify email to set new password',
+            )
+          }
+        >
+          <Text style={{ fontSize: 16 }}>Forgot Password</Text>
+        </TouchableOpacity>
+        {/* )} */}
       </ScrollView>
     </SafeAreaView>
   );
