@@ -31,6 +31,7 @@ npm install
 
 - `src/app/` — file-based routes (Expo Router); root `_layout.tsx` and `index.tsx` live here
 - `src/app/(auth)/` — auth stack: `index`, `verify_email`, `verify_otp`, `set_password` (see `(auth)/_layout.tsx`)
+- `src/components/` — shared UI primitives (for example `CustomButton`, `InputField`) used across screens
 - `index.ts` — not used as the app entry while `package.json` `main` is `expo-router/entry`
 - `app.json` — Expo config (`name`, `slug`, `scheme`, icons, splash, `typedRoutes` experiment)
 - `assets/` — icons, splash, favicon
@@ -38,4 +39,4 @@ npm install
 
 ## Code quality
 
-ESLint (flat config) and Prettier are configured; run `npm run lint` and `npm run format` before commits.
+ESLint (`eslint.config.js`, `eslint-config-expo` + Prettier integration) and Prettier (`.prettierrc`, `.prettierignore`) are configured. Run `npm run lint` and `npm run format` before commits.
