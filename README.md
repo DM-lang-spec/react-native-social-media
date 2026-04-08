@@ -2,7 +2,7 @@
 
 Mobile client built with **Expo SDK 55**, **React Native**, and **TypeScript**. Navigation uses [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routes). The app entry is `expo-router/entry` in `package.json`. The root screen (`src/app/index.tsx`) redirects to the `(auth)` group, which hosts sign-up, email verification, OTP, and password setup.
 
-**Documentation:** [App flows and logic](docs/app-flows.md) — routes, query params, screen behavior, and implementation status.
+**Documentation:** [App flows and logic](docs/app-flows.md) — routes, query params, screen behavior, implementation status, and **Screenshots** of auth screens (PNG files in `docs/screenshots/`, captured from the Expo web build).
 
 ## Requirements
 
@@ -37,7 +37,8 @@ npm install
 - `index.ts` — not the bundle entry while `package.json` `main` is `expo-router/entry`
 - `app.json` — Expo config (`name`, `slug`, `scheme`, icons, splash, `typedRoutes` experiment)
 - `tsconfig.json` — TypeScript compiler options
-- `assets/` — icons, splash, favicon, and `assets/images/` for screen imagery
+- `assets/` — icons, splash, favicon, and `assets/images/` for screen imagery (e.g. branding on verify OTP)
+- `docs/screenshots/` — reference images for auth UI (listed under **Screenshots** in `docs/app-flows.md`)
 
 ## Code quality
 
