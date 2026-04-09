@@ -33,23 +33,23 @@ Images below are from the **Expo web** build (same React Native screens as nativ
 
 ### Login (`(auth)/index`)
 
-![Login screen with email, password, Sign in, Sign up link, and Forgot Password](screenshots/login.png)
+![Login: branding logo, Login to Socials, email and password fields, Sign in, Sign up link, Forgot Password](screenshots/login.png)
 
 ### Verify email — sign up (`heading=Sign up for new profile`)
 
-![Verify email screen titled Sign up for new profile](screenshots/verify-email-signup.png)
+![Verify email: logo, Sign up for new profile, email field, Verify](screenshots/verify-email-signup.png)
 
 ### Verify email — forgot password (`heading=Verify email to set new password`)
 
-![Verify email screen titled Verify email to set new password](screenshots/verify-email-forgot-password.png)
+![Verify email: logo, Verify email to set new password, email field, Verify](screenshots/verify-email-forgot-password.png)
 
 ### Verify OTP (`verify_otp`)
 
 ![Verify OTP: logo, six numeric OTP boxes, Sign up button](screenshots/verify-otp.png)
 
-### Set password (placeholder)
+### Set password (`set_password`)
 
-![Placeholder set password screen](screenshots/set-password.png)
+![Set password: logo, two password fields (with visibility toggles), Sign up](screenshots/set-password.png)
 
 ## Routes and parameters
 
@@ -58,7 +58,7 @@ Images below are from the **Expo web** build (same React Native screens as nativ
 | `(auth)/index.tsx`          | `/` after redirect | Email + password “Sign in” form; entry to sign-up and forgot-password paths. |
 | `(auth)/verify_email.tsx`   | `/verify_email`    | Collect email; title comes from the `heading` query param.           |
 | `(auth)/verify_otp.tsx`     | `/verify_otp`      | Six-digit OTP entry (`react-native-otp-entry`), branding image, **Sign up** button; submit and navigation to `set_password` not wired yet. |
-| `(auth)/set_password.tsx`   | `/set_password`    | Placeholder UI only.                                                 |
+| `(auth)/set_password.tsx`   | `/set_password`    | Password + confirm via two `InputField`s (both labeled “Password” in code), branding image, **Sign up**; `setPassword` and post-sign-up navigation not implemented yet. |
 
 ### `verify_email` query param
 
@@ -72,6 +72,7 @@ The screen reads `heading` with `useLocalSearchParams()` and renders it as the m
 
 ### Login (`(auth)/index.tsx`)
 
+- Layout: branding image (`assets/images/instagram.png`), title **Login to Socials**, stacked `InputField`s for email and password, **Sign in** `CustomButton`.
 - Local state: `form` (`email`, `password`), `loading`, `errorInfo` (the error UI around “Forgot Password” is commented out).
 - **Sign in** — `signInWithEmail` is currently empty; the button does not change `loading` until logic is added.
 - **Sign up** — Expo Router `Link` to `verify_email` with the sign-up heading.
@@ -79,18 +80,21 @@ The screen reads `heading` with `useLocalSearchParams()` and renders it as the m
 
 ### Verify email (`(auth)/verify_email.tsx`)
 
+- Layout: same branding image as login; `heading` from params as the screen title; email `InputField` and **Verify** `CustomButton`.
 - Local state: `email`, `loading`.
 - **Verify** — `emailVerify` is empty (no API call, no navigation to `verify_otp` yet).
 
 ### Verify OTP (`(auth)/verify_otp.tsx`)
 
-- Local state: `otp` (string from the OTP component).
+- Local state: OTP string updated via `setOtp` from `OtpInput` (not read yet until `otpVerify` is implemented).
 - Layout: `SafeAreaView`, centered `ScrollView`, app image from `assets/images/instagram.png`, numeric `OtpInput` with six digits (blue focus styling), `CustomButton` titled **Sign up**.
 - **`otpVerify`** — empty; no API call or `router.push` to `set_password` yet.
 
 ### Set password (`(auth)/set_password.tsx`)
 
-- Static centered text; no password fields or completion flow yet.
+- Local state: `pass` (`password`, `confirmPassword`), `loading`.
+- Layout: branding image, two password `InputField`s (both use the title **Password** in source), **Sign up** `CustomButton`.
+- **`setPassword`** — empty; no API call or navigation to a post-auth home screen yet.
 
 ## Shared UI logic
 
@@ -99,4 +103,4 @@ The screen reads `heading` with `useLocalSearchParams()` and renders it as the m
 
 ## Implementation status (for contributors)
 
-Backend integration and stack progression after email verification are not implemented: primary actions are still no-ops, and navigation from `verify_email` → `verify_otp` and from `verify_otp` → `set_password` is not wired yet. The verify OTP screen has real input UI; `set_password` remains a minimal placeholder. Wiring typically means calling your auth API from `signInWithEmail` / `emailVerify` / `otpVerify`, then `router.push` to the next stack screen on success, and passing identifiers (e.g. email or session) via params or a small auth context if needed.
+Backend integration and stack progression through the auth stack are not implemented: handlers (`signInWithEmail`, `emailVerify`, `otpVerify`, `setPassword`) are still no-ops, and navigation from `verify_email` → `verify_otp` and from `verify_otp` → `set_password` is not wired yet. Login, verify email, verify OTP, and set password screens all have real UI (shared branding image on each). Wiring typically means calling your auth API from those handlers, then `router.push` to the next stack screen on success, and passing identifiers (e.g. email or session) via params or a small auth context if needed.
