@@ -37,7 +37,7 @@ npm install
 - `index.ts` — not the bundle entry while `package.json` `main` is `expo-router/entry`
 - `app.json` — Expo config (`name`, `slug`, `scheme`, icons, splash, `typedRoutes` experiment)
 - `tsconfig.json` — TypeScript compiler options
-- `assets/` — icons, splash, favicon, and `assets/images/` for screen imagery (e.g. branding on verify OTP)
+- `assets/` — icons, splash, favicon, and `assets/images/` for screen imagery (shared branding on login, verify email, verify OTP, and set password)
 - `docs/screenshots/` — reference images for auth UI (listed under **Screenshots** in `docs/app-flows.md`)
 
 ## Code quality
