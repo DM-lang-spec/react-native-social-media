@@ -33,6 +33,7 @@ export default function Login() {
           }}
         />
         <View style={{ width: '100%', alignItems: 'center', gap: 10 }}>
+          <Text style={{ fontSize: 22 }}>Login to Socials</Text>
           <InputField
             title="Email"
             value={form.email}
@@ -65,7 +66,12 @@ export default function Login() {
           <Text style={{ fontSize: 16, color: 'black' }}>
             Don&apos;t have an account?
           </Text>
-          <Link href="verify_email?heading=Sign up for new profile">
+          <Link
+            href={{
+              pathname: '/(auth)/verify_email',
+              params: { heading: 'Sign up for new profile' },
+            }}
+          >
             Sign up
           </Link>
         </View>
