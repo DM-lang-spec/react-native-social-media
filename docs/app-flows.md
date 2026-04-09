@@ -43,9 +43,9 @@ Images below are from the **Expo web** build (same React Native screens as nativ
 
 ![Verify email screen titled Verify email to set new password](screenshots/verify-email-forgot-password.png)
 
-### Verify OTP (placeholder)
+### Verify OTP (`verify_otp`)
 
-![Placeholder verify OTP screen](screenshots/verify-otp.png)
+![Verify OTP: logo, six numeric OTP boxes, Sign up button](screenshots/verify-otp.png)
 
 ### Set password (placeholder)
 
@@ -57,7 +57,7 @@ Images below are from the **Expo web** build (same React Native screens as nativ
 | --------------------------- | ------------------ | -------------------------------------------------------------------- |
 | `(auth)/index.tsx`          | `/` after redirect | Email + password “Sign in” form; entry to sign-up and forgot-password paths. |
 | `(auth)/verify_email.tsx`   | `/verify_email`    | Collect email; title comes from the `heading` query param.           |
-| `(auth)/verify_otp.tsx`     | `/verify_otp`      | Placeholder UI only.                                                 |
+| `(auth)/verify_otp.tsx`     | `/verify_otp`      | Six-digit OTP entry (`react-native-otp-entry`), branding image, **Sign up** button; submit and navigation to `set_password` not wired yet. |
 | `(auth)/set_password.tsx`   | `/set_password`    | Placeholder UI only.                                                 |
 
 ### `verify_email` query param
@@ -84,7 +84,9 @@ The screen reads `heading` with `useLocalSearchParams()` and renders it as the m
 
 ### Verify OTP (`(auth)/verify_otp.tsx`)
 
-- Static centered text (`Hello from Login`); no OTP input or navigation yet.
+- Local state: `otp` (string from the OTP component).
+- Layout: `SafeAreaView`, centered `ScrollView`, app image from `assets/images/instagram.png`, numeric `OtpInput` with six digits (blue focus styling), `CustomButton` titled **Sign up**.
+- **`otpVerify`** — empty; no API call or `router.push` to `set_password` yet.
 
 ### Set password (`(auth)/set_password.tsx`)
 
@@ -97,4 +99,4 @@ The screen reads `heading` with `useLocalSearchParams()` and renders it as the m
 
 ## Implementation status (for contributors)
 
-Backend integration and stack progression after email verification are not implemented: primary actions are no-ops, and `verify_otp` / `set_password` are stubs. Wiring typically means calling your auth API from `signInWithEmail` / `emailVerify`, then `router.push` to the next stack screen on success, and passing identifiers (e.g. email or session) via params or a small auth context if needed.
+Backend integration and stack progression after email verification are not implemented: primary actions are still no-ops, and navigation from `verify_email` → `verify_otp` and from `verify_otp` → `set_password` is not wired yet. The verify OTP screen has real input UI; `set_password` remains a minimal placeholder. Wiring typically means calling your auth API from `signInWithEmail` / `emailVerify` / `otpVerify`, then `router.push` to the next stack screen on success, and passing identifiers (e.g. email or session) via params or a small auth context if needed.
