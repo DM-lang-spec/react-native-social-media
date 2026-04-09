@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '~/src/components/CustomButton';
 
 export default function SetOtp() {
-  const [otp, setOtp] = useState('');
+  const [, setOtp] = useState('');
 
   const otpVerify = () => {};
 
